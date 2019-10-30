@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/hm-back" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-dictionary" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-product" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module_schedule" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sys-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webtest" charset="UTF-8" />
+  </component>
+</project>

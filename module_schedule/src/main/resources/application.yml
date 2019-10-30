@@ -1,0 +1,46 @@
+#eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+#端口
+server:
+  port: 8999
+#spring配置
+spring:
+  application:
+    name: schedule
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo_oauth?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  #定时器quartz配置
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            #tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    job-store-type: jdbc
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+logging:
+  level:
+    com.hm.moduleuser.mapper: debug

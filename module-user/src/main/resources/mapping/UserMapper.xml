@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.moduleuser.mapper.UserMapper">
+    <select id="selectUserByName" resultType="com.hm.user.model.User">
+        SELECT * FROM user WHERE userName = #{value}
+    </select>
+
+    <select id="selectUserByNameAndPwd" resultType="com.hm.user.model.User">
+        SELECT * FROM user WHERE userName = #{username} AND password = #{password}
+    </select>
+
+    <select id="selectRoleIdsByUserId" resultType="int">
+        SELECT DISTINCT roleId FROM user_role WHERE userId = #{userId}
+    </select>
+
+    <select id="selectUrlByRoleId" resultType="String">
+        SELECT DISTINCT url FROM url WHERE id IN (
+            SELECT DISTINCT urlId FROM role_url WHERE roleId  = #{roleId}
+        )
+    </select>
+</mapper>

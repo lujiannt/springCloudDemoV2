@@ -1,0 +1,50 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+server:
+  port: 8083
+spring:
+  application:
+    name: module-user
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo_oauth?serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  thymeleaf:
+    cache: false
+    prefix: classpath:templates
+    suffix: .html
+    mode: HTML
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.example.entity
+logging:
+  level:
+    com.hm.moduleuser.mapper: debug
+#分页
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+feign:
+  hystrix:
+    #开启feign熔断器
+    enabled: true

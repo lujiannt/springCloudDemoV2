@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sys-eureka" />
+        <module name="hm-back" />
+        <module name="module-product" />
+        <module name="webtest" />
+        <module name="module-model" />
+        <module name="module-dictionary" />
+        <module name="module_schedule" />
+        <module name="module-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo" target="1.8" />
+      <module name="eureka" target="1.8" />
+      <module name="hm-model" target="1.7" />
+      <module name="hm-model-old" target="1.5" />
+      <module name="product" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
+      <module name="eureka" options="-parameters" />
+      <module name="hm-back" options="-parameters" />
+      <module name="module-dictionary" options="-parameters" />
+      <module name="module-product" options="-parameters" />
+      <module name="module-user" options="-parameters" />
+      <module name="module_schedule" options="-parameters" />
+      <module name="product" options="-parameters" />
+      <module name="sys-eureka" options="-parameters" />
+      <module name="webtest" options="-parameters" />
+    </option>
+  </component>
+</project>

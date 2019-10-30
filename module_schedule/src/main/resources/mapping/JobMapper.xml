@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.schedule.mapper.JobMapper">
+
+    <insert id="insertJob" parameterType="com.hm.schedule.entity.ScheduleJob">
+        INSERT INTO quartz_schedulejob
+        (
+        ID, JOB_NAME, JOB_STATUS, CRON_EXPRESSION, CONCURRENT,
+        DESCRIPTION, JOB_GROUP, TARGET_TASK
+        )
+        VALUES
+        (
+        #{jobId}, #{jobName}, #{jobStatus}, #{cronExpression}, #{concurrent},
+        #{description}, #{jobGroup}, #{targetTask}
+        )
+    </insert>
+
+    <update id="updateJob" parameterType="com.hm.schedule.entity.ScheduleJob">
+        UPDATE quartz_schedulejob
+        <set>
+            <if test="cronExpression != null">CRON_EXPRESSION = #{cronExpression}</if>
+        </set>
+        WHERE ID = #{jobId}
+    </update>
+
+    <update id="removeJob" parameterType="String">
+        UPDATE quartz_schedulejob
+        SET JOB_STATUS = 0
+        WHERE ID = #{jobId}
+    </update>
+
+    <update id="updateJobToEnable" parameterType="String">
+        UPDATE quartz_schedulejob
+        SET JOB_STATUS = 1
+        WHERE ID = #{jobId}
+    </update>
+
+    <update id="updateJobToPause" parameterType="String">
+        UPDATE quartz_schedulejob
+        SET JOB_STATUS = 2
+        WHERE ID = #{jobId}
+    </update>
+
+    <select id="selectJobByName" parameterType="String"
+            resultType="com.hm.schedule.entity.ScheduleJob">
+        SELECT
+            ID AS jobId,
+            JOB_NAME AS jobName,
+            JOB_STATUS AS jobStatus,
+            CRON_EXPRESSION AS cronExpression,
+            CONCURRENT AS concurrent,
+            DESCRIPTION AS description,
+            JOB_GROUP AS jobGroup,
+            TARGET_TASK AS targetTask
+        FROM
+            quartz_schedulejob
+        WHERE
+            JOB_NAME = #{name}
+    </select>
+
+    <select id="selectJobs"
+            resultType="com.hm.schedule.entity.ScheduleJob">
+        SELECT
+            ID AS jobId,
+            JOB_NAME AS jobName,
+            JOB_STATUS AS jobStatus,
+            CRON_EXPRESSION AS cronExpression,
+            CONCURRENT AS concurrent,
+            DESCRIPTION AS description,
+            JOB_GROUP AS jobGroup,
+            TARGET_TASK AS targetTask
+        FROM
+            quartz_schedulejob
+        WHERE
+            JOB_STATUS = 1
+    </select>
+
+    <select id="selectJobById"
+            resultType="com.hm.schedule.entity.ScheduleJob">
+        SELECT
+            ID AS jobId,
+            JOB_NAME AS jobName,
+            JOB_STATUS AS jobStatus,
+            CRON_EXPRESSION AS cronExpression,
+            CONCURRENT AS concurrent,
+            DESCRIPTION AS description,
+            JOB_GROUP AS jobGroup,
+            TARGET_TASK AS targetTask
+        FROM
+            quartz_schedulejob
+        WHERE
+            ID = #{value}
+    </select>
+
+</mapper>

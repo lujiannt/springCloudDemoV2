@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label th:text="${user.userName}"></label>
+<span>[[${user.userName}]]</span>
+</body>
+
+
+<script th:inline="javascript">
+    var user = [[${user}]];
+    console.log(user);
+    console.log(user.userName);
+</script>
+</html>
